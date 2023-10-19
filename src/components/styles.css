@@ -6,8 +6,70 @@
   border-radius: 5px;
 }
 
+/* .report-form {
+  ba
+} */
+
+
+
+/* Navigation Bar Styles */
+.navbar {
+  background-color: gray;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  margin: 0 15px;
+}
+
+/* Dashboard Container Styles */
+.dashboard-container {
+  background-color: gray;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Notification Panel Styles */
+.notification-panel {
+  background-color: white;
+  padding: 10px;
+  border: 1px solid orange;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/* Form and Real-Time Data Styles */
+/* .form-container {
+  background-color: white;
+  padding: 20px;
+  border: 1px solid orange;
+  border-radius: 5px;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.real-time-data {
+  background-color: white;
+  padding: 20px;
+  border: 1px solid orange;
+  border-radius: 5px;
+  width: 80%;
+}
+ */
+
+
 .report-form .form-group {
   margin-bottom: 15px;
+  width: 200px;
 }
 
 .report-form label {
@@ -53,4 +115,4 @@
 .error {
   background-color: #f44336;
   color: white;
-}
+} 

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './styles.css';
 import DataValidation from './DataValidation';
 import ReportSubmissionForm from './ReportSubmissionForm';
 import Notification from './Notification';
-import { fetchRealTimeData } from './api'; 
-import { fetchValidationErrors } from './api';
+//import { fetchRealTimeData } from './api'; 
+//import { fetchValidationErrors } from './api';
 
 const Dashboard = () => {
 
@@ -37,47 +38,67 @@ const Dashboard = () => {
     "Amount overdue": 0.00,
     "Months in arrears": 0
   };
-
+ 
   const [realTimeData, setRealTimeData] = useState([]);
   const [validationErrors, setValidationErrors] = useState([]);
   const [notification, setNotification] = useState(null);
 
-  useEffect(() => {
-    // Fetch validation errors from the server
+  // useEffect(() => {
+  //   // Fetch validation errors from the server
     
-    api.fetchData() // Access the fetchData method from the imported api object
-    .then(errors => setValidationErrors(errors))
-    .catch(error => console.error('Error fetching validation errors:', error));
-  }, []); 
+  //   api.fetchData() // Access the fetchData method from the imported api object
+  //   .then(errors => setValidationErrors(errors))
+  //   .catch(error => console.error('Error fetching validation errors:', error));
+  // }, []); 
 
-  useEffect(() => {
-    // Fetch real-time data from the server
-    api.postData() // Access the postData method from the imported api object
-      .then(data => setRealTimeData(data))
-      .catch(error => setNotification({ type: 'error', message: error.message }));
-  }, []); // Fetch data on component mount
+  // useEffect(() => {
+  //   // Fetch real-time data from the server
+  //   api.postData() // Access the postData method from the imported api object
+  //     .then(data => setRealTimeData(data))
+  //     .catch(error => setNotification({ type: 'error', message: error.message }));
+  // }, []); // Fetch data on component mount
 
   const handleSubmit = (formData) => {
     
     //API call to submit the data
     console.log("Form Data Submitted:", formData);
+    setNotification({ type: 'success', message: 'Data submitted successfully!' });
   };
 
+  
+
   return (
-    <div>
-      {notification && <Notification type={notification.type} message={notification.message} />}
-      <h1>Real-Time Reporting Dashboard</h1>
-      <DataValidation validationErrors={validationErrors} />
-      <ReportSubmissionForm onSubmit={handleSubmit} initialData={hardcodedReportData} />
-      {/* Display real-time data */}
-      
-      <ul>
-        {realTimeData.map(item => (
-          <li key={item.id}>{item.name}: {item.value}</li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+    
+      <div>
+        <nav className="navbar">
+          <div className="navbar-item">
+            <Link to="/notifications">
+              <i className="fa fa-bell"></i> Notifications
+            </Link>
+          </div>
+          <div className="navbar-item">
+            <Link to="/loan-applications">Loan Applications</Link>
+          </div>
+          <div className="navbar-item">
+            <Link to="/agreement-templates">Agreement Templates</Link>
+          </div>
+        </nav>
+        <div className="notification-panel">
+          <Notification type={notification?.type} message={notification?.message} />
+        </div>
+        <h1>Real-Time Reporting Dashboard</h1>
+        <DataValidation validationErrors={validationErrors} />
+        <ReportSubmissionForm onSubmit={handleSubmit} initialData={hardcodedReportData} />
+        {/* Display real-time data */}
+        <ul>
+          {realTimeData.map((item) => (
+            <li key={item.id}>
+              {item.name}: {item.value}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
 
 export default Dashboard;

@@ -1,20 +1,18 @@
-// src/App.js
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
+import Notifications from './components/Notification';
+import LoanApplications from './components/LoanApplications';
+import AgreementTemplates from './components/AgreementTemplates';
 
 const App = () => {
-  // const [complianceStatus, setComplianceStatus] = useState(null);
-
-  // useEffect(() => {
-  //   // Fetch compliance status data here if needed
-  // }, []);
-
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Dashboard/>} />
-        {/* Add more routes for other components */}
+        <Route path="/notifications" element={<Notifications />} />
+        <Route path="/loan-applications" element={<LoanApplications />} />
+        <Route path="/agreement-templates" element={<AgreementTemplates />} />
+        <Route path="/" element={<Dashboard />} />
       </Routes>
     </Router>
   );
